@@ -1,32 +1,34 @@
-import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import RootStore from "../store/RootStore";
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from "react-router-dom";
 import { Form, Table } from 'react-bootstrap';
+import useLastKeyPressed from '../hooks/LastKeyPressed';
 
 export const PlanetListComponent = () => {
 
     const planetStore = RootStore.planetStore
-    const searchRef = React.useRef<HTMLInputElement>(null);
+    const searchRef = useRef<HTMLInputElement>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         planetStore.loadData();
     }, []);
 
     let navigate = useNavigate();
 
-    document.onkeydown = function (e) {
-        if (e.key == '/') {
+    useLastKeyPressed((key) => {
+        if (key == '/') {
             searchRef?.current?.focus();
-            e.preventDefault();
+            //preventDefault();
         }
-    };
+    });
 
     if (!planetStore.planetList) {
         return <h1>No data</h1>
     }
 
     const filterData = (e: React.ChangeEvent<HTMLInputElement>) => {
+
         // TO-DO    
     }
 
