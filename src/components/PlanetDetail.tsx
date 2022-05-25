@@ -12,8 +12,8 @@ interface PlanetDetailProps {
 export const PlanetDetailComponent = ({ planet }: PlanetDetailProps) => {
     
     return (
-        <div>
-            <h1>{planet?.name}</h1>
+        <div className="mt-5">
+            <h1 className="sectionHeadline">{planet?.name}</h1>
             <h2>{planet?.terrain}</h2>
         </div>
     );

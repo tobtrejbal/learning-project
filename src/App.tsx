@@ -1,31 +1,26 @@
 import './App.css';
-import PlanetListComponent from './components/PlanetList'
-import PlanetDetailComponent from './components/PlanetDetail'
-import PlanetDetailWrapperComponent from './components/PlanetDetailWrapper'
-import RootStore from './store/RootStore'
+import React from 'react';
+import { Nav, Navbar } from "react-bootstrap";
 
 import {
   Outlet,
   Link,
+  NavLink,
 } from "react-router-dom";
 
 function App() {
-  document.onkeydown = function (e) {
-    switch (e.key) {
-      case "Enter":
-        //console.log("test");
-        break;
-    }
-  };
-
   return (
     <div className="App">
-      <div>
-        <nav>
-          <Link to="/">Home</Link> |{" "}
-          <Link to="planets">Planets</Link>
-        </nav>
-      </div>
+      <Navbar>
+        <Nav>
+          <Nav.Link as={NavLink} to="/">
+            Home
+          </Nav.Link>
+          <Nav.Link as={NavLink} to="/planets">
+            Planet API
+          </Nav.Link>
+        </Nav>
+      </Navbar>
       <Outlet />
     </div>
   );
