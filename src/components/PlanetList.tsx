@@ -3,7 +3,7 @@ import RootStore from "../store/RootStore";
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from "react-router-dom";
 import { Form, Table } from 'react-bootstrap';
-import useLastKeyPressed from '../hooks/LastKeyPressed';
+import useKeyCombinationPressed from '../hooks/KeyCombinationPressed';
 
 export const PlanetListComponent = () => {
 
@@ -15,12 +15,8 @@ export const PlanetListComponent = () => {
     }, []);
 
     let navigate = useNavigate();
-
-    useLastKeyPressed((key) => {
-        if (key == '/') {
-            searchRef?.current?.focus();
-            //preventDefault();
-        }
+    useKeyCombinationPressed('f', () => {
+        searchRef?.current?.focus();
     });
 
     if (!planetStore.planetList) {

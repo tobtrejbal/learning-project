@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 
-function useLastKeyPressed(onKeyPressed: (key: string) => any) {
+function useKeyCombinationPressed(key: string, onKeyPressed: () => any) {
     const [lastKeyPressed, setLastKeyPressed] = useState<string>("");
 
     useEffect(() => {
         document.onkeydown = (e) => {
-            setLastKeyPressed(e.key);
-            onKeyPressed(e.key);
-            e.preventDefault();
+            if (e.key == key && e.ctrlKey) {
+                setLastKeyPressed(e.key);
+                onKeyPressed();
+                e.preventDefault();
+            }
         }
         return () => {
             document.onkeydown = null;
@@ -16,9 +18,9 @@ function useLastKeyPressed(onKeyPressed: (key: string) => any) {
 
    /**useEffect(() => {
         onKeyPressed(lastKeyPressed);
-    }, [lastKeyPressed]);
+    }, [lastKeyPressed]);*/
 
-    return lastKeyPressed;*/
+    return lastKeyPressed;
 }
 
-export default useLastKeyPressed;
+export default useKeyCombinationPressed;

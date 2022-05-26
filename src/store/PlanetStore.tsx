@@ -30,7 +30,6 @@ class PlanetStore {
                 { name: string, population: number, diameter: number, gravity: string, orbitalPeriod: number, terrain: string, url: string }) =>
                 new Planet(name, population, diameter, gravity, orbitalPeriod, terrain, url));
             this.setPlanetList(planets);
-            console.log(data);
         } catch (error) {
             console.log(error);
         } finally {
